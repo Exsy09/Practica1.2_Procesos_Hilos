@@ -12,7 +12,6 @@ class TrianguloThread extends Thread {
         this.altura = altura;
     }
 
-    // Constructor que permite establecer prioridad
     public TrianguloThread(double base, double altura, int prioridad) {
         this.base = base;
         this.altura = altura;
@@ -21,20 +20,16 @@ class TrianguloThread extends Thread {
 
     @Override
     public void run() {
-        // Cálculo del área: (base * altura) / 2
-        // Se evita el uso de multiplicación directa para base*altura
         double suma = 0;
         for (int i = 0; i < (int) altura; i++) {
-            suma += base; // suma repetida en lugar de multiplicación
+            suma += base;
         }
 
-        // Parte decimal (si existe)
         double parteDecimal = altura - (int) altura;
-        suma += base * parteDecimal; // permitido según el enunciado
+        suma += base * parteDecimal;
 
         area = suma / 2;
 
-        // Mostrar resultado
         System.out.println(
                 "\n[Hilo " + getName() + "]" +
                         " Base: " + base +
@@ -78,7 +73,6 @@ public class CalculoAreasTriangulos {
             hilo.start();
         }
 
-        // Esperar a que todos los hilos terminen
         for (TrianguloThread hilo : hilos) {
             try {
                 hilo.join();
